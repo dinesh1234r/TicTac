@@ -1,0 +1,92 @@
+import java.util.*;
+
+class GameProject1{
+    char[][] board;
+    public GameProject1()
+    {
+        board=new char[3][3];
+        initilize();
+    }
+    public void initilize()
+    {
+        for(int i=0;i<3;i++)
+        {
+            for(int j=0;j<3;j++)
+            {
+                board[i][j]=' ';
+            }
+        }
+    }
+    public void displayboard()
+    {
+        System.out.println("_____________");
+        for(int i=0;i<3;i++)
+        {
+            System.out.println();
+            System.out.print("| ");
+            for(int j=0;j<3;j++)
+            {
+                System.out.print(board[i][j]+" | ");
+            }
+            System.out.println();
+            System.out.println("_____________");
+        }
+    }
+    public void placemark(int row,int col,char marking)
+    {
+        board[row][col]=marking;
+    }
+    public void rowcheck()
+    {
+        for(int i=0;i<3;i++)
+        {
+            if(board[i][0]!=' '&&board[i][0]==board[i][1]&&board[i][1]==board[i][2])
+            {
+                System.out.print(board[i][0]+" : You Won the Match");
+                break;
+            }
+        }
+    }
+    public void colcheck()
+    {
+        for(int i=0;i<3;i++)
+        {
+            if(board[0][i]!=' '&&board[0][i]==board[1][i]&&board[1][i]==board[2][i])
+            {
+                System.out.print(board[0][i]+" : You Won The Match");
+                break;
+            }
+        }
+    }
+    public void diacheck()
+    {
+        if(board[0][0]!=' '&&board[0][0]==board[1][1]&&board[1][1]==board[2][2])
+        {
+            System.out.print(board[0][0]+" :You Won The Match");
+        }
+        if(board[0][2]!=' '&&board[0][2]==board[1][1]&&board[1][1]==board[2][0])
+        {
+            System.out.print(board[1][1]+" : You Won The Match");
+        }
+    }
+}
+
+class Running
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        GameProject1 g=new GameProject1();
+        for(int i=0;i<9;i++)
+        {
+            int a=sc.nextInt();
+            int b=sc.nextInt();
+            char ch=sc.next().charAt(0);
+            g.placemark(a,b,ch);
+            g.displayboard();
+            g.rowcheck();
+            g.colcheck();
+            g.diacheck();
+        }
+    }
+}
